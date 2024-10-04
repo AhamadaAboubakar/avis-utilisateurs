@@ -21,11 +21,4 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private TypeDeRole libelle;
 
-    public TypeDeRole getLibelle() {
-        return libelle;
-    }
-
-    public void setLibelle(TypeDeRole libelle) {
-        this.libelle = libelle;
-    }
 }

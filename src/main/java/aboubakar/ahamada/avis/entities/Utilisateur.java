@@ -11,14 +11,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @Entity
 @Table(name = "utilisateur")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Utilisateur implements UserDetails {
 
     @Id
@@ -47,10 +47,6 @@ public class Utilisateur implements UserDetails {
         return this.email;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     @Override
     public boolean isAccountNonExpired() {
         return this.actif;
@@ -71,23 +67,4 @@ public class Utilisateur implements UserDetails {
         return this.actif;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }

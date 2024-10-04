@@ -5,6 +5,7 @@ import aboubakar.ahamada.avis.repository.AvisRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+
 public class AvisService {
 
     private final AvisRepository avisRepository;

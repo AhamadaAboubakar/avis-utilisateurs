@@ -5,6 +5,7 @@ import aboubakar.ahamada.avis.entities.Role;
 import aboubakar.ahamada.avis.entities.Utilisateur;
 import aboubakar.ahamada.avis.repository.UtilisateurRepository;
 import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,15 +21,13 @@ public class UtilisateurService {
 
     private UtilisateurRepository utilisateurRepository;
     private BCryptPasswordEncoder passwordEncoder;
+    private ValidationService validationService;
 
     public void inscription(Utilisateur utilisateur) {
         if (!utilisateur.getEmail().contains("@")) {
             throw new RuntimeException("Vôtre adresse mail est invalid");
         }
         if (!utilisateur.getEmail().contains(".")) {
-            throw new RuntimeException("Vôtre adresse mail est invalid");
-        }
-        if (!utilisateur.getEmail().contains(" ")) {
             throw new RuntimeException("Vôtre adresse mail est invalid");
         }
         Optional<Utilisateur> utilisateurOptional = this.utilisateurRepository.findByEmail(utilisateur.getEmail());
@@ -40,7 +39,8 @@ public class UtilisateurService {
         Role roleUtilisateur = new Role();
         roleUtilisateur.setLibelle(TypeDeRole.UTILISATEUR);
         utilisateur.setRole(roleUtilisateur);
-        this.utilisateurRepository.save(utilisateur);
+        utilisateur = this.utilisateurRepository.save(utilisateur);
+        //this.validationService.enregister(utilisateur);
     }
 
 }
